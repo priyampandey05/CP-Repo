@@ -1,2 +1,2 @@
-# demorepo
+# CP codes repo
 author priyam
