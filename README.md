@@ -1,2 +1,2 @@
 # demorepo
-author priyam bhai
+author priyam
