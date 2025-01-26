@@ -1,0 +1,129 @@
+#include<bits/stdc++.h>
+#include<ext/pb_ds/assoc_container.hpp>
+#include<ext/pb_ds/tree_policy.hpp>
+
+using namespace std;
+using namespace __gnu_pbds;
+
+#define pb push_back
+#define fi first
+#define se second
+#define sz(x) ((long long)(x).size())
+#define lb lower_bound
+#define ub upper_bound
+#define all(x) (x).begin(), (x).end()
+#define rall(x) (x).rbegin(), (x).rend()
+#define MAX(x) *max_element(all(x))
+#define MIN(x) *min_element(all(x))
+#define SUM(x) accumulate(all(x), 0LL)
+#define rep(i, a, b) for (ll i = (a); i < (b); i++)
+#define rep1(i, a, b) for (ll i = (a); i <= (b); i++)
+#define bck(i, a, b) for (ll i = (a) - 1; i >= (b); i--)
+
+typedef long long ll;
+typedef pair<ll, ll> pll;
+typedef vector<ll> vll;
+typedef vector<vll> vvll;
+typedef map<ll, ll> mpll;
+
+template <typename T>
+void print_vector(const vector<T>& v) {
+    for (const auto& x : v) cout << x << " ";
+    cout << "\n";
+}
+
+template <typename T>
+void input_vector(vector<T>& v, int n) {
+    for (int i = 0; i < n; ++i) cin >> v[i];
+}
+
+template<class T> using oset = tree<T, null_type, less<T>, rb_tree_tag, tree_order_statistics_node_update>;
+
+const long double eps = 1e-9;
+const ll mod = 1e9 + 7;
+const int64_t inf = 1LL << 60;
+const double pi = 3.14159265358979323846264338327950;
+
+bool ispow2(ll x){return (x ? !(x & (x - 1)) : 0);}
+
+ll binpow(ll a, ll b){
+    ll res = 1;
+    while(b > 0){
+        if(b & 1){
+            res = (res*1LL*a)%mod;
+        }
+        a = (a*1LL*a)%mod;
+        b >>= 1;
+    }
+    return res;
+}
+
+ll ncr(ll n, ll r){
+    ll fact[n+1];
+    ll inv[n+1];
+    fact[0] = 1;
+    inv[0] = 1;
+    for(ll i=1; i<=n; i++){
+        fact[i] = (i*fact[i-1])%mod;
+    }
+    for(ll i=1; i<=n; i++){
+        inv[i] = binpow(fact[i], mod-2);
+    }
+    if(r > n) return 0;
+    return ((fact[n]*inv[r])%mod*inv[n-r])%mod;
+}
+
+ll calc_hash(string const& s) {
+    const ll p = 31;
+    const ll m = 1e9 + 9;
+    ll hash_value = 0;
+    ll p_pow = 1;
+    for (char c : s) {
+        hash_value = (hash_value + (c - 'a' + 1) * p_pow) % m;
+        p_pow = (p_pow * p) % m;
+    }
+    return hash_value;
+}
+
+class DSU {
+    public:
+        vll pa;
+        vll sz;
+        DSU (ll n) {
+            pa.resize(n+1);
+            sz.resize(n+1);
+            for(ll i=0; i<=n; i++) {
+                pa[i] = i;
+                sz[i] = 1;
+            }
+        }
+        ll get(ll a) {
+            if(a == pa[a]) return a;
+            return pa[a] = get(pa[a]);
+        }
+        void merge(ll a, ll b) {
+            a = get(a);
+            b = get(b);
+            if(a != b) {
+                if(sz[a] < sz[b]) swap(a, b);
+                pa[b] = a;
+                sz[a] += sz[b];
+            }
+        }
+};
+
+void solve() {
+    
+}
+int main(){
+    ios :: sync_with_stdio(false);
+    cin.tie(NULL);
+    cout.tie(NULL);
+    ll t = 1;
+    cin>>t;
+    while(t--){
+        solve();
+    }
+    return 0;
+}
+    
